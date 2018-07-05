@@ -105,25 +105,25 @@ class Bot:
                 # Remove unallowed moves (it seems that is_legal wasn't good enough)
                 if self.last_move == "up":
                     try:
-                        legal_dirs.remove("up")
+                        # legal_dirs.remove("up")
                         legal_dirs.remove("down")
                     except ValueError:
                         pass
                 elif self.last_move == "down":
                     try:
-                        legal_dirs.remove("down")
+                        # legal_dirs.remove("down")
                         legal_dirs.remove("up")
                     except ValueError:
                         pass
                 elif self.last_move == "left":
                     try:
-                        legal_dirs.remove("left")
+                        # legal_dirs.remove("left")
                         legal_dirs.remove("right")
                     except ValueError:
                         pass
                 elif self.last_move == "right":
                     try:
-                        legal_dirs.remove("right")
+                        # legal_dirs.remove("right")
                         legal_dirs.remove("left")
                     except ValueError:
                         pass
@@ -221,21 +221,24 @@ class Bot:
             row = self.game.my_player().row
             col = self.game.my_player().col
             # create updated maps
-            map1[row][col] = "x"
+            map1[row][col] = [3]
             try:
-                map1[next_x][next_y] = self.game.my_botid
+                map1[next_x][next_y] = [self.game.my_botid]
             except IndexError:
-                continue
+                with open('log.txt', 'a') as file:
+                    file.write('Index Error')
             map2 = map1
 
             my_spaces = 0
             enemy_spaces = 0
-            for y in range(0, self.game.field_height):
-                for x in range(0, self.game.field_width):
+            for x in range(0, self.game.field_height):
+                for y in range(0, self.game.field_width):
+                    # with open('log.txt', 'a') as file:
+                    #     file.write('x, y: ' + str(x) + ' , ' + str(y) + '\n')
                     self.lee_map((row, col), (x, y), map1, 0)
                     self.lee_map((row, col), (x, y), map2, 0)
-                    position = (x, y)
-                    if self.game.field.is_legal_tuple(position, self.game.my_botid):
+                    position = x, y
+                    if self.game.field.is_legal(x, y, self.game.my_botid):
                         my_dist = map1[x][y]
                         enemy_dist = map2[x][y]
                         # compare distances between two players
@@ -254,11 +257,16 @@ class Bot:
 
     def lee_map(self, start, target, map, dist):
         x, y = start
-        map[x][y] = dist
+        with open('log.txt', 'a') as file:
+            file.write(str(map[x][y][0]) + '\n')
 
         if start == target:
+            map[x][y] = [dist]
             return
-        if map[x][y] == ".":
+        if map[x][y][0] == 2:
+            # with open('log.txt', 'a') as file:
+            #     file.write(str(map[x][y][0]) + '\n')
+            map[x][y] = [dist]
             dist += 1
             self.lee_map((x - 1, y), target, map, dist)
             dist += 1

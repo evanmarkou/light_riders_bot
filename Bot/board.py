@@ -57,7 +57,10 @@ class Board:
 
     def is_legal(self, row, col, my_id):
         enemy_id = my_id ^ 1
+        # with open('log.txt', 'a') as file:
+        #     file.write('row, col: ' + str(row) + ' , ' + str(col) + '\n' + 'self.cell = ' + str(self.cell[row][col]) + '\n')
         return (self.in_bounds(row, col)) and (not BLOCKED in self.cell[row][col]) and (not enemy_id in self.cell[row][col])
+
 
     def is_legal_tuple(self, loc, my_id):
         row, col = loc

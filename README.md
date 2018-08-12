@@ -36,16 +36,19 @@ clone project from github using the following command
 Step 2
 
 ```
-Download and install the appropriate version of the ai-bot-workspace platform from here: https://github.com/jmerle/ai-bot-workspace/releases
+Download and install the appropriate version of the ai-bot-workspace platform from here: 
+https://github.com/jmerle/ai-bot-workspace/releases
 ```
 
 Step 3
 
 ```
-Start the workspace platform and select the Light Riders game. Following the instrustions from https://github.com/jmerle/ai-bot-workspace#ai-bot-workspace
+Start the workspace platform and select the Light Riders game. 
+Following the instrustions from https://github.com/jmerle/ai-bot-workspace#ai-bot-workspace
 insert the Light Riders Bot in the platform. Find and adversary and initiate the game.
 
-Note** - For finding an adversary, just use the random-basic Light Riders Bot (it can be found in https://github.com/search?q=light+riders+bot&type=Repositories)
+Note** - For finding an adversary, just use the random-basic Light Riders Bot 
+(it can be found in https://github.com/search?q=light+riders+bot&type=Repositories)
 and/or create your own less/more intelligent bot and put it to test.
 ```
 
@@ -64,5 +67,5 @@ The above scenario is for testing in localhost mode. In case of deployment visit
 
 ## License
 
-This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details
 
